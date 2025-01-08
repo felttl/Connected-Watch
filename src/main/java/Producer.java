@@ -18,7 +18,7 @@ public class Producer {
 			for (int i = 0; i < 10; i++) {
 				double FC = Math.random() * 180; // Fréquence cardiaque aléatoire
 				int Temp = (int) (Math.random() * 40); // Température aléatoire
-
+				
 				// Construction du message JSON
 				String message = String.format("{\"FC\": %.2f, \"Temp\": %d}", FC, Temp);
 
