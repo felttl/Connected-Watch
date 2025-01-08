@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Wed Jan 08 15:07:54 UTC 2025
+RabbitMQ-PubSub-0.0.1.jar>=
+RabbitMQ-PubSub-0.0.1.pom>=
+RabbitMQ-PubSub-0.0.1-jar-with-dependencies.jar>=
