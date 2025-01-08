@@ -13,3 +13,4 @@ docker run -it --rm \
     -w /opt/maven \
     maven:3.8.5-openjdk-17-slim \
     mvn clean install
+
