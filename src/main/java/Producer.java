@@ -1,3 +1,5 @@
+import java.util.UUID;
+
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -16,11 +18,13 @@ public class Producer {
 			channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
 
 			for (int i = 0; i < 10; i++) {
-				double FC = Math.random() * 180; // Fréquence cardiaque aléatoire
-				int Temp = (int) (Math.random() * 40); // Température aléatoire
+				double FC = Math.random() * 180;
+				int Temp = (int) (Math.random() * 40);
+				UUID id = UUID.randomUUID();
+				
 
 				// Construction du message JSON
-				String message = String.format("{\"FC\": %.2f, \"Temp\": %d}", FC, Temp);
+				String message = String.format("{\"ID\": %s, \"FC\": %.2f, \"Temp\": %d}",id.toString(), FC, Temp);
 
 				// Publication du message
 				channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes("UTF-8"));
