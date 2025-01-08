@@ -15,12 +15,17 @@ public class Producer {
 		try (Connection connection = factory.newConnection(); Channel channel = connection.createChannel()) {
 			channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
 
-			String message = argv.length < 1 ? "info: Hello World!" : String.join(" ", argv);
-			System.out.println("Routing key : " + ROUTING_KEY + " ; message : " + message);
+			for (int i = 0; i < 10; i++) {
+				double FC = Math.random() * 180; // Fréquence cardiaque aléatoire
+				int Temp = (int) (Math.random() * 40); // Température aléatoire
 
-			channel.basicPublish(EXCHANGE_NAME, ROUTING_KEY, null, message.getBytes("UTF-8"));
-			System.out.println(" [x] Sent '" + message + "'");
+				// Construction du message JSON
+				String message = String.format("{\"FC\": %.2f, \"Temp\": %d}", FC, Temp);
+
+				// Publication du message
+				channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes("UTF-8"));
+				System.out.println(" [x] Sent: " + message);
+			}
 		}
 	}
-
 }
