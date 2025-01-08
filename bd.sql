@@ -1,10 +1,11 @@
+-- PostgreSQL
 CREATE DATABASE MontreConnectee;
 
-USE MontreConnectee;
-
 CREATE TABLE Infos (
-   id INT PRIMARY KEY NOT NULL AUTO_INCREMENT , 
-    FC DOUBLE,          
-    Temp INT            
+    id CHAR(32) PRIMARY KEY,  -- ID comme chaîne de 32 caractères
+    FC DOUBLE PRECISION,
+    Temp INT
 );
 
+
+-- end
