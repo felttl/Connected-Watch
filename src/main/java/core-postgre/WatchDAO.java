@@ -1,6 +1,12 @@
 
-public class UserDAO {
+public class WatchDAO {
 
+    /**
+     * récupère les données et les transmet
+     * fait aussi l'ajout dan la bd
+     * @param argv
+     * @throws Exception
+     */
     public static void main(String[] argv) throws Exception {
 		ConnectionFactory factory = new ConnectionFactory();
 		factory.setHost(BROKER_HOST);
@@ -21,12 +27,21 @@ public class UserDAO {
 		});
     }
 
-    public static int add(Product product) {
+
+    private char[] id;
+    private Double heartRate;
+    private int temp;
+
+    public WatchDAO(){
+        id = new char[34];
+    }
+
+    public int add(WatchDAO watchdao) {
         var sql = "INSERT INTO products(name, price) "
                 + "VALUES(?,?)";
 
-        try (var conn =  DB.connect();
-             var pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (conn =  watchdao.connect();
+            pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             // bind the values
             pstmt.setString(1, product.getName());
