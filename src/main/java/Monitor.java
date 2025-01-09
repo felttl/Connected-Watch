@@ -64,7 +64,7 @@ public class Monitor {
             uneWatch.setId(id);
             uneWatch.setHeartRate(EC);
             uneWatch.setTemp(temp);
-
+        return uneWatch;
         } catch (Exception e) {
             throw new IllegalArgumentException("Invalid message format: " + message, e);
         }
