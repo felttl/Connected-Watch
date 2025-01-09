@@ -1,0 +1,43 @@
+#!bin/sh
+#!/bin/bash
+
+output_file="docker-compose.yml"
+
+# Début du fichier docker-compose.yml
+echo "version: '3.9'" > $output_file
+echo "services:" >> $output_file
+
+# Boucle sur les identifiants des conteneurs passés en arguments
+for container_id in "$@"
+do
+    # Récupérer les informations du conteneur avec docker inspect
+    container_name=$(docker inspect --format='{{.Name}}' "$container_id" | sed 's/^\\///')
+    image=$(docker inspect --format='{{.Config.Image}}' "$container_id")
+    ports=$(docker inspect --format='{{range $p, $conf := .NetworkSettings.Ports}}- {{$p}}:{{(index $conf 0).HostPort}}{{println}}{{end}}' "$container_id")
+    env_vars=$(docker inspect --format='{{range .Config.Env}}- "{{.}}"{{println}}{{end}}' "$container_id")
+    volumes=$(docker inspect --format='{{range .Mounts}}- {{.Source}}:{{.Destination}}{{println}}{{end}}' "$container_id")
+
+    # Ajouter la configuration de chaque service au fichier
+    echo "  $container_name:" >> $output_file
+    echo "    image: $image" >> $output_file
+    
+    # Ajouter les ports
+    if [ -n "$ports" ]; then
+        echo "    ports:" >> $output_file
+        echo "$ports" | sed 's/^/      /' >> $output_file
+    fi
+
+    # Ajouter les variables d'environnement
+    if [ -n "$env_vars" ]; then
+        echo "    environment:" >> $output_file
+        echo "$env_vars" | sed 's/^/      /' >> $output_file
+    fi
+
+    # Ajouter les volumes
+    if [ -n "$volumes" ]; then
+        echo "    volumes:" >> $output_file
+        echo "$volumes" | sed 's/^/      /' >> $output_file
+    fi
+done
+
+echo "Fichier $output_file généré avec succès."

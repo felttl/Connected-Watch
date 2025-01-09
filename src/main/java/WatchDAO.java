@@ -60,14 +60,15 @@ public class WatchDAO {
         // préparation
         int r=0;
         try{
-            String sql = "INSERT INTO " + WatchDAO.dbTable + " (id, ER, Temp) VALUES (?, ?, ?)";
+            String sql = "INSERT INTO " + WatchDAO.dbTable + " (id, hr, temp, wdate) VALUES (?, ?, ?, ?)";
             this.connection = PostgreConnection.getConnection();
             PreparedStatement pstmt = connection.prepareStatement(
                 sql, Statement.RETURN_GENERATED_KEYS
-            );        
+            );
             pstmt.setString(1, watch.getId());        
             pstmt.setDouble(2, watch.getHeartRate());  
             pstmt.setDouble(3, watch.getTemp());    
+            pstmt.setString(4, watch.getDate());
             int insertedRows = pstmt.executeUpdate();
             // Vérifier si une ligne a été insérée et récupérer l'ID généré
             if (insertedRows > 0) {

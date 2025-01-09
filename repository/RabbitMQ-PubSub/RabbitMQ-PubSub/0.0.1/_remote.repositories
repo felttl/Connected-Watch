@@ -1,5 +1,8 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Thu Jan 09 14:43:20 UTC 2025
+#Thu Jan 09 15:36:28 UTC 2025
+=\=\=\=\=\=\=
 RabbitMQ-PubSub-0.0.1.jar>=
 RabbitMQ-PubSub-0.0.1.pom>=
+>>>>>>>=Stashed changes
+<<<<<<<=Updated upstream
 RabbitMQ-PubSub-0.0.1-jar-with-dependencies.jar>=
