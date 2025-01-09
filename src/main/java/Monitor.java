@@ -34,7 +34,7 @@ public class Monitor {
 static class DataPoint {
 	private final String id; 
 	private final double fc;  
-	private final int temp;   
+	 
 
 	public DataPoint(String id, double fc, int temp) {
 		this.id = id;
