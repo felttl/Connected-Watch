@@ -16,7 +16,7 @@ public class Monitor {
     private static final String BROKER_HOST = System.getenv("broker_host");
 
     // Liste pour stocker les objets DataPoint
-    private static final List<Watch> dataPoints = new ArrayList<>();
+    private static final ArrayList<Watch> dataPoints = new ArrayList<>();
 
     public static void main(String[] argv) throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
@@ -43,11 +43,11 @@ public class Monitor {
                 System.err.println(" [!] Failed to parse message: " + message);
             }
         };
-		var length = dataPoints.size();
+		int length = dataPoints.size();
+        WatchDAO watchDAO = new WatchDAO();
 		for (int i = 0; i<length; i++){
-			LocalDateTime laDate = LocalDateTime.now();
-			String date = laDate.toString();
-
+            watchDAO.add(dataPoints.get(i));
+            System.out.println(dataPoints.get(i).toString());
 		}
 
         channel.basicConsume(queueName, true, deliverCallback, consumerTag -> {});

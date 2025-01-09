@@ -37,19 +37,19 @@ public class WatchDAO {
 
     private static final dbTable = "Watch";
 
-    public WatchDAO(){
-
+    public WatchDAO(Watch watch){
+        this.id = watch
         // add connection JDBC
         this.connection = (new Connection()).getConnection();
     }
 
-    public int add(Watch watchdao) {
+    public int add(Watch watch) {
         // préparation
-        String sql = "INSERT INTO " + WatchDAO.dbTable + " (id, ER, Temp) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO " + Watch.dbTable + " (id, ER, Temp) VALUES (?, ?, ?)";
         this.connction = Connection.getConnection();
-        pstmt.setInt(1, watchdao.id);          
-        pstmt.setInt(2, watchdao.heartRate);  
-        pstmt.setDouble(3, watchdao.temp);    
+        pstmt.setInt(1, watch.id);          
+        pstmt.setInt(2, watch.heartRate);  
+        pstmt.setDouble(3, watch.temp);    
         int insertedRows = pstmt.executeUpdate();
         // Vérifier si une ligne a été insérée et récupérer l'ID généré
         if (insertedRows > 0) {
