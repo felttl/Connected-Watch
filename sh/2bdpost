@@ -1,0 +1,30 @@
+#!/bin/bash
+
+if [ ! "$(command -v docker)" ]; then
+    echo "docker could not be found"
+    exit 0
+fi
+
+CURRENT_DIR=$(basename $(pwd))
+
+NETWORK_NAME=mqtt-network
+
+if [ ! "$(docker network ls | grep "$NETWORK_NAME")" ]; then
+  echo "Creating network ..."
+  docker network create $NETWORK_NAME
+fi
+
+docker run -d --rm -it \
+    --name $CURRENT_DIR-broker \
+    -p 15673:15673 -p 5673:5673  \
+    --net $NETWORK_NAME \
+    rabbitmq:3.12.4-management-alpine
+
+
+docker run -it --name postgres \
+    -e POSTGRES_USER=root \
+    -e POSTGRES_PASSWORD=root \
+    -e POSTGRES_DB=admin_db \
+    -p 5432:5432 -d postgres \
+    --net $NETWORK_NAME 
+
