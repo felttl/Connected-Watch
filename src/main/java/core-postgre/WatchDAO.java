@@ -1,3 +1,4 @@
+import java.util.UUID;
 
 public class WatchDAO {
 
@@ -32,34 +33,35 @@ public class WatchDAO {
     private Double heartRate;
     private int temp;
 
+    private Connection connection;
+
+    private static final dbTable = "Watch";
+
     public WatchDAO(){
-        id = new char[34];
+
+        // add connection JDBC
+        this.connection = (new Connection()).getConnection();
     }
 
-    public int add(WatchDAO watchdao) {
-        var sql = "INSERT INTO products(name, price) "
-                + "VALUES(?,?)";
-
-        try (conn =  watchdao.connect();
-            pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-
-            // bind the values
-            pstmt.setString(1, product.getName());
-            pstmt.setDouble(2, product.getPrice());
-
-            // execute the INSERT statement and get the inserted id
-            int insertedRow = pstmt.executeUpdate();
-            if (insertedRow > 0) {
-                var rs = pstmt.getGeneratedKeys();
+    public int add(Watch watchdao) {
+        // préparation
+        String sql = "INSERT INTO " + WatchDAO.dbTable + " (id, ER, Temp) VALUES (?, ?, ?)";
+        this.connction = Connection.getConnection();
+        pstmt.setInt(1, watchdao.id);          
+        pstmt.setInt(2, watchdao.heartRate);  
+        pstmt.setDouble(3, watchdao.temp);    
+        int insertedRows = pstmt.executeUpdate();
+        // Vérifier si une ligne a été insérée et récupérer l'ID généré
+        if (insertedRows > 0) {
+            try (ResultSet rs = pstmt.getGeneratedKeys()) {
                 if (rs.next()) {
                     return rs.getInt(1);
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
         return -1;
     }
+    
 }
 
 

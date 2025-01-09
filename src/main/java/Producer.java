@@ -16,9 +16,7 @@ public class Producer {
 			channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
 
 			for (int i = 0; i < 10; i++) {
-				double FC = Math.random() * 180; // Fréquence cardiaque aléatoire
-				int Temp = (int) (Math.random() * 40); // Température aléatoire
-				
+				Watch watch = new Watch();
 				// Construction du message JSON
 				String message = String.format("{\"FC\": %.2f, \"Temp\": %d}", FC, Temp);
 
