@@ -13,7 +13,7 @@ public class PostgreConnection {
 
     // Constructeur privé pour empêcher l'instanciation multiple
     private PostgreConnection() {
-        String url = "jdbc:postgresql://postgre:5432/postgreSQL";
+        String url = "jdbc:postgresql://postgres:5432/MontreConnectee";
         String username = "root";
         String password = "root";        
         try {

@@ -8,10 +8,10 @@ import javax.print.DocFlavor.STRING;
 
 public class Watch {
 
-    private String id; // []
+    private String id; 
     private double heartRate;
     private double temp;
-    private String wdate; // char[21] (str fixed size)
+    private String wdate; 
 
     public Watch(){
         UUID uuid = UUID.randomUUID();

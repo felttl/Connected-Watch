@@ -14,10 +14,18 @@ if [ ! "$(docker network ls | grep "$NETWORK_NAME")" ]; then
   docker network create $NETWORK_NAME
 fi
 
-docker run -it --name postgres \
+docker run -it --name postgres  \
     -e POSTGRES_USER=root \
     -e POSTGRES_PASSWORD=root \
-    -e POSTGRES_DB=admin_db \
-    -p 5432:5432 -d postgres \
-    --net $NETWORK_NAME 
+    -e POSTGRES_DB=MontreConnectee \
+    -p 5432:5432 \
+    -v $(pwd)/init.sql:/dockert-entrypoint-initdb.d/init.sql \
+    --net $NETWORK_NAME \
+    -d postgres
 
+docker run -it --name pgadmin \
+    -e PGADMIN_DEFAULT_EMAIL=admin@gmail.com \
+    -e PGADMIN_DEFAULT_PASSWORD=root \
+    -p 8080:80 \
+    --net $NETWORK_NAME \
+    -d dpage/pgadmin4

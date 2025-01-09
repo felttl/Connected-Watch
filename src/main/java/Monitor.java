@@ -35,20 +35,22 @@ public class Monitor {
 
             // Parse et ajoute le message dans la liste
             try {
-                Watch dataPoint = parseMessage(message); // Utilisation de parseMessage
-                dataPoints.add(dataPoint);
-                System.out.println(" [x] Added DataPoint: " + dataPoint);
+                Watch dataPoint = parseMessage(message); 
+                System.out.println(" [x] Parsed DataPoint: " + dataPoint);
+
+                // Insertion dans la base de données
+                WatchDAO watchDAO = new WatchDAO();
+                int result = watchDAO.add(dataPoint);
+                if (result > 0) {
+                    System.out.println(" [x] Successfully added to DB: " + dataPoint);
+                } else {
+                    System.err.println(" [!] Failed to add to DB: " + dataPoint);
+                }
             } catch (Exception e) {
-                System.err.println(" [!] Failed to parse message: " + message);
+                System.err.println(" [!] Error processing message: " + message);
+                e.printStackTrace();
             }
         };
-		int length = dataPoints.size();
-        WatchDAO watchDAO = new WatchDAO();
-		for (int i = 0; i<length; i++){
-            watchDAO.add(dataPoints.get(i));
-            System.out.println("Ajout dans la table : "+dataPoints.get(i).toString());
-		}
-
         channel.basicConsume(queueName, true, deliverCallback, consumerTag -> {});
     }
 
