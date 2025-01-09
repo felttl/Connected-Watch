@@ -3,9 +3,6 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
 
-
-import src.main.java.Monitor.DataPoint;
-
 import java.time.LocalDateTime;
 import java.util.*;
 

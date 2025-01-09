@@ -35,7 +35,7 @@ public class WatchDAO {
 
     private Connection connection;
 
-    private static final dbTable = "Watch";
+    private static final String dbTable = "Watch";
 
     public WatchDAO(Watch watch){
         this.id = watch;
