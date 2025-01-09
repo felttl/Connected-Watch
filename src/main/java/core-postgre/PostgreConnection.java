@@ -7,19 +7,16 @@ import java.sql.SQLException;
  */
 public class PostgreConnection {
 
-    // Instance unique de PostgreConnection
     private static PostgreConnection instance;
     private Connection connection;
 
-    // URL de connexion
-    private final String url = "jdbc:postgresql://localhost:5432/postgreSQL";
-    private final String username = "root";
-    private final String password = "root";
-
     // Constructeur privé pour empêcher l'instanciation multiple
     private PostgreConnection() {
+        String url = "jdbc:postgresql://localhost:5432/postgreSQL";
+        String username = "root";
+        String password = "root";        
         try {
-            connection = DriverManager.getConnection(url, username, password);
+            this.connection = DriverManager.getConnection(url, username, password);
             System.out.println("Connexion réussie à la base de données !");
         } catch (SQLException e) {
             System.err.println("Erreur de connexion : " + e.getMessage());
@@ -27,19 +24,15 @@ public class PostgreConnection {
     }
 
     // Méthode pour obtenir l'instance unique
-    public static PostgreConnection getInstance() {
-        if (instance == null) {
+    public static Connection getConnection() {
+        if (PostgreConnection.instance == null) {
             synchronized (PostgreConnection.class) {
-                if (instance == null) { // Double-checked locking pour éviter des problèmes de threads
-                    instance = new PostgreConnection();
+                // Double-checked locking pour éviter des problèmes de threads
+                if (PostgreConnection.instance == null) { 
+                    PostgreConnection.instance = new PostgreConnection();
                 }
             }
         }
-        return instance;
-    }
-
-    // Méthode pour obtenir la connexion
-    public Connection getConnection() {
-        return connection;
+        return PostgreConnection.instance.connection;
     }
 }

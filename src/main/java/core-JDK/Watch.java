@@ -53,7 +53,7 @@ public class Watch {
     } 
     
     public String toString() {
-        return "DataPoint{" +
+        return "Watch{" +
                 "id='" + id + '\'' +
                 ", fc=" + heartRate +
                 ", temp=" + temp +
