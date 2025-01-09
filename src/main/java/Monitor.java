@@ -39,6 +39,10 @@ public class Monitor {
                 System.err.println(" [!] Failed to parse message: " + message);
             }
         };
+		var length = dataPoints.size();
+		for (int i = 0; i<length; i++){
+
+		}
 
         channel.basicConsume(queueName, true, deliverCallback, consumerTag -> {});
     }
@@ -49,10 +53,10 @@ public class Monitor {
             message = message.replace("{", "").replace("}", "").replace("\"", "");
             String[] parts = message.split(", ");
             String id = parts[0].split(": ")[1];
-            double fc = Double.parseDouble(parts[1].split(": ")[1]);
+            double EC = Double.parseDouble(parts[1].split(": ")[1]);
             int temp = Integer.parseInt(parts[2].split(": ")[1]);
 
-            return new DataPoint(id, fc, temp);
+            return new DataPoint(id, EC, temp);
         } catch (Exception e) {
             throw new IllegalArgumentException("Invalid message format: " + message, e);
         }
@@ -61,18 +65,30 @@ public class Monitor {
     // Classe interne représentant un point de données
     static class DataPoint {
         private final String ID;
-        private final double FC;
+        private final double EC;
         private final int Temp;
 
-        public DataPoint(String id, double fc, int temp) {
+        public DataPoint(String id, double EC, int temp) {
             this.ID = id;
-            this.FC = fc;
+            this.EC = EC;
             this.Temp = temp;
         }
 
+		public String getID(){
+			return this.ID;
+		}
+
+		public double getFC(){
+		return this.EC;
+		}
+
+		public int getTemp(){
+			return this.Temp;
+		}
+
         @Override
         public String toString() {
-            return "{ID=" + ID + ", FC=" + FC + ", Temp=" + Temp + "}";
+            return "{ID=" + ID + ", EC=" + EC + ", Temp=" + Temp + "}";
         }
     }
 }

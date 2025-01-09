@@ -18,13 +18,13 @@ public class Producer {
 			channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
 
 			for (int i = 0; i < 10; i++) {
-				double FC = Math.random() * 180;
+				double EC = Math.random() * 180;
 				int Temp = (int) (Math.random() * 40);
 				UUID id = UUID.randomUUID();
 				
 
 				// Construction du message JSON
-				String message = String.format("{\"ID\": \"%s\", \"FC\": %.2f, \"Temp\": %d}",id.toString(), FC, Temp);
+				String message = String.format("{\"ID\": \"%s\", \"EC\": %.2f, \"Temp\": %d}",id.toString(), EC, Temp);
 
 				// Publication du message
 				channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes("UTF-8"));
