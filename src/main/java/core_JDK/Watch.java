@@ -1,6 +1,8 @@
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+package core_JDK;
+
 public class Watch {
 
     private char[] id; // []
