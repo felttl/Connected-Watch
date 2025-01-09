@@ -21,9 +21,9 @@ public class Producer {
 
 				Watch watch = new Watch();
 
-				double EC = watch.get(); // faire le get ici
-				int Temp = (int) (Math.random() * 40); // le 2e get
-				UUID id = UUID.randomUUID(); // 3e get
+				double EC = watch.getHeartRate(); 
+				int Temp = watch.getTemp();
+				UUID id = watch.getId
 
 				// Construction du message JSON
 				String message = String.format("{\"ID\": \"%s\", \"EC\": %.2f, \"Temp\": %d}",id.toString(), EC, Temp);

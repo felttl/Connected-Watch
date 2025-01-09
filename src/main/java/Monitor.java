@@ -3,8 +3,12 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
 
-import java.util.ArrayList;
-import java.util.List;
+import main.java.core-JDK.Watch;
+import src.main.java.Monitor.DataPoint;
+
+import java.time.LocalDateTime;
+import java.util.*;
+
 
 public class Monitor {
 
@@ -12,7 +16,7 @@ public class Monitor {
     private static final String BROKER_HOST = System.getenv("broker_host");
 
     // Liste pour stocker les objets DataPoint
-    private static final List<DataPoint> dataPoints = new ArrayList<>();
+    private static final List<Watch> dataPoints = new ArrayList<>();
 
     public static void main(String[] argv) throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
@@ -32,7 +36,7 @@ public class Monitor {
 
             // Parse et ajoute le message dans la liste
             try {
-                DataPoint dataPoint = parseMessage(message); // Utilisation de parseMessage
+                Watch dataPoint = parseMessage(message); // Utilisation de parseMessage
                 dataPoints.add(dataPoint);
                 System.out.println(" [x] Added DataPoint: " + dataPoint);
             } catch (Exception e) {
@@ -41,6 +45,8 @@ public class Monitor {
         };
 		var length = dataPoints.size();
 		for (int i = 0; i<length; i++){
+			LocalDateTime laDate = LocalDateTime.now();
+			String date = laDate.toString();
 
 		}
 
@@ -48,7 +54,7 @@ public class Monitor {
     }
 
     // Méthode pour parser un message en un DataPoint
-    private static DataPoint parseMessage(String message) {
+    private static Watch parseMessage(String message) {
         try {
             message = message.replace("{", "").replace("}", "").replace("\"", "");
             String[] parts = message.split(", ");
@@ -56,39 +62,16 @@ public class Monitor {
             double EC = Double.parseDouble(parts[1].split(": ")[1]);
             int temp = Integer.parseInt(parts[2].split(": ")[1]);
 
-            return new DataPoint(id, EC, temp);
+            Watch uneWatch =  new Watch();
+
+            uneWatch.setId(id);
+            uneWatch.setHeartRate(EC);
+            uneWatch.setTemp(temp);
+
         } catch (Exception e) {
             throw new IllegalArgumentException("Invalid message format: " + message, e);
         }
     }
 
-    // Classe interne représentant un point de données
-    static class DataPoint {
-        private final String ID;
-        private final double EC;
-        private final int Temp;
-
-        public DataPoint(String id, double EC, int temp) {
-            this.ID = id;
-            this.EC = EC;
-            this.Temp = temp;
-        }
-
-		public String getID(){
-			return this.ID;
-		}
-
-		public double getFC(){
-		return this.EC;
-		}
-
-		public int getTemp(){
-			return this.Temp;
-		}
-
-        @Override
-        public String toString() {
-            return "{ID=" + ID + ", EC=" + EC + ", Temp=" + Temp + "}";
-        }
-    }
+  
 }
