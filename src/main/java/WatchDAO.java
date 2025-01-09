@@ -66,7 +66,7 @@ public class WatchDAO {
                 sql, Statement.RETURN_GENERATED_KEYS
             );        
             pstmt.setString(1, watch.getId());        
-            pstmt.setInt(2, (int)watch.getHeartRate());  
+            pstmt.setDouble(2, watch.getHeartRate());  
             pstmt.setDouble(3, watch.getTemp());    
             int insertedRows = pstmt.executeUpdate();
             // Vérifier si une ligne a été insérée et récupérer l'ID généré

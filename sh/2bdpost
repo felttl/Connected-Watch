@@ -14,13 +14,6 @@ if [ ! "$(docker network ls | grep "$NETWORK_NAME")" ]; then
   docker network create $NETWORK_NAME
 fi
 
-docker run -d --rm -it \
-    --name $CURRENT_DIR-broker \
-    -p 15673:15673 -p 5673:5673  \
-    --net $NETWORK_NAME \
-    rabbitmq:3.12.4-management-alpine
-
-
 docker run -it --name postgres \
     -e POSTGRES_USER=root \
     -e POSTGRES_PASSWORD=root \

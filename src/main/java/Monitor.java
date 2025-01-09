@@ -59,7 +59,7 @@ public class Monitor {
             String[] parts = message.split(", ");
             String id = parts[0].split(": ")[1];
             double EC = Double.parseDouble(parts[1].split(": ")[1]);
-            int temp = Integer.parseInt(parts[2].split(": ")[1]);
+            double temp = Double.parseDouble(parts[2].split(": ")[1]);
 
             Watch uneWatch =  new Watch();
 
