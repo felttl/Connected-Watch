@@ -38,7 +38,7 @@ public class WatchDAO {
     private static final dbTable = "Watch";
 
     public WatchDAO(Watch watch){
-        this.id = watch
+        this.id = watch;
         // add connection JDBC
         this.connection = (new Connection()).getConnection();
     }

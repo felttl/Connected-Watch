@@ -6,7 +6,7 @@ public class Watch {
     private char[] id; // []
     private double heartRate;
     private double temp;
-    private char[] wdate // [21]
+    private char[] wdate; // [21]
 
     public Watch(){
         id = new char[34];
@@ -52,5 +52,12 @@ public class Watch {
         this.wdate = wdate;
     } 
     
- 
+    public String toString() {
+        return "DataPoint{" +
+                "id='" + id + '\'' +
+                ", fc=" + heartRate +
+                ", temp=" + temp +
+                ", date=" + this.getFormatDate(this.wdate) +
+                '}';
+    }
 }

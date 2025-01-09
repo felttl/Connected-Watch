@@ -23,7 +23,7 @@ public class Producer {
 
 				double EC = watch.getHeartRate(); 
 				int Temp = watch.getTemp();
-				UUID id = watch.getId
+				UUID id = watch.getId();
 
 				// Construction du message JSON
 				String message = String.format("{\"ID\": \"%s\", \"EC\": %.2f, \"Temp\": %d}",id.toString(), EC, Temp);

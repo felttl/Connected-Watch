@@ -3,7 +3,7 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
 
-import main.java.core-JDK.Watch;
+
 import src.main.java.Monitor.DataPoint;
 
 import java.time.LocalDateTime;
@@ -47,7 +47,7 @@ public class Monitor {
         WatchDAO watchDAO = new WatchDAO();
 		for (int i = 0; i<length; i++){
             watchDAO.add(dataPoints.get(i));
-            System.out.println(dataPoints.get(i).toString());
+            System.out.println("Ajout dans la table : "+dataPoints.get(i).toString());
 		}
 
         channel.basicConsume(queueName, true, deliverCallback, consumerTag -> {});
