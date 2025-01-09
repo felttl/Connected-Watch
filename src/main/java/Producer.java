@@ -24,7 +24,7 @@ public class Producer {
 				
 
 				// Construction du message JSON
-				String message = String.format("{\"ID\": %s, \"FC\": %.2f, \"Temp\": %d}",id.toString(), FC, Temp);
+				String message = String.format("{\"ID\": \"%s\", \"FC\": %.2f, \"Temp\": %d}",id.toString(), FC, Temp);
 
 				// Publication du message
 				channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes("UTF-8"));
