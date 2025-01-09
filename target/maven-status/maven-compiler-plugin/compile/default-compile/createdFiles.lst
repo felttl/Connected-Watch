@@ -1,2 +1,4 @@
 Producer.class
 Consumer.class
+Monitor$DataPoint.class
+Monitor.class
