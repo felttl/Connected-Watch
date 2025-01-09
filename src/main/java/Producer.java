@@ -1,8 +1,8 @@
-import java.util.UUID;
-
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+
+import main.java.*;
 
 public class Producer {
 
@@ -22,11 +22,11 @@ public class Producer {
 				Watch watch = new Watch();
 
 				double EC = watch.getHeartRate(); 
-				int Temp = watch.getTemp();
-				UUID id = watch.getId();
+				double Temp = watch.getTemp();
+				String id = watch.getId();
 
 				// Construction du message JSON
-				String message = String.format("{\"ID\": \"%s\", \"EC\": %.2f, \"Temp\": %d}",id.toString(), EC, Temp);
+				String message = String.format("{\"ID\": \"%s\", \"EC\": %.2f, \"Temp\": %.2f}",id, EC, Temp);
 
 				// Publication du message
 				channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes("UTF-8"));

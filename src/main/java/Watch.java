@@ -1,24 +1,26 @@
+package main.java;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
-package core_JDK;
+import javax.print.DocFlavor.STRING;
+
 
 public class Watch {
 
-    private char[] id; // []
+    private String id; // []
     private double heartRate;
     private double temp;
-    private char[] wdate; // [21]
+    private String wdate; // char[21] (str fixed size)
 
     public Watch(){
-        id = new char[34];
         UUID uuid = UUID.randomUUID();
-        addToCharArray(uuid.toString(), myString);
+        this.id = uuid.toString();
         double hR = Math.random() * 180;
         int tmp = (int) (Math.random() * 40);
         this.heartRate = hR;        
         this.temp = tmp;
-        this.wdate = this.getFormatDate(Date());
+        this.wdate = this.getFormatDate(new Date());
     }
 
     private String getFormatDate(Date date){
@@ -28,7 +30,7 @@ public class Watch {
 
     // get set
 
-    public char[] getId(){ // char[?]
+    public String getId(){ // char[?]
         return this.id;
     }
     public double getHeartRate(){
@@ -37,11 +39,11 @@ public class Watch {
     public double getTemp(){
         return this.temp;
     }
-    public char[] getDate(){ // char[21]
+    public String getDate(){ // char[21]
         return this.wdate;
     } 
 
-    public void setId(char[] id){ // char[?]
+    public void setId(String id){ // char[?]
         this.id = id;
     }
     public void setHeartRate(double hrate){
@@ -50,7 +52,7 @@ public class Watch {
     public void setTemp(double tmp){
         this.temp = tmp;
     }
-    public void getDate(char[] wdate){ // char[21]
+    public void getDate(String wdate){ // char[21]
         this.wdate = wdate;
     } 
     
@@ -59,7 +61,7 @@ public class Watch {
                 "id='" + id + '\'' +
                 ", fc=" + heartRate +
                 ", temp=" + temp +
-                ", date=" + this.getFormatDate(this.wdate) +
+                ", date=" + this.wdate +
                 '}';
     }
 }
