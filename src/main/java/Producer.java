@@ -19,13 +19,13 @@ public class Producer {
 
 			for (int i = 0; i < 10; i++) {
 				Watch watch = new Watch();
-				double EC = watch.getHeartRate(); 
+				double HR = watch.getHeartRate(); 
 				double Temp = watch.getTemp();
 				String id = watch.getId();
 				String sdate = watch.getDate();
 
 				// Construction du message JSON
-				String message = String.format("{\"ID\": \"%s\", \"HR\": %.2f, \"Temp\": %.2f, \"sdate\": %s}",id, EC, Temp, sdate);
+				String message = String.format("{\"ID\": \"%s\", \"HR\": %.2f, \"Temp\": %.2f, \"sdate\": %s}",id, HR, Temp, wDate);
 
 				// Publication du message
 				channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes("UTF-8"));

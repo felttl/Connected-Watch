@@ -48,7 +48,7 @@ public class WatchDAO {
     }
 
     private java.sql.Connection connection;
-    private static final String dbTable = "Watch";
+    private static final String dbTable = "watch";
 
     public WatchDAO(){
         // add connection JDBC
