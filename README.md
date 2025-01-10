@@ -35,7 +35,7 @@ we are using a brocker named
 - [x] java postgreConnetion (singleton)
 - [x] java mysqlConnection (singleton)
 - [x] using jdk 17 to compile classes
-- [x] brocker rabbitm
+- [x] brocker rabbitmq
   - [x] inform the user
 - [ ] inform firefighter 🔥 
   - [ ] postgres + pgAdmin failed
