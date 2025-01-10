@@ -16,16 +16,32 @@ collaborative : <br>
 
 https://excalidraw.com/#room=2ceef69c678c276b7b80,xi3QUamN1P-3FMKsHWbhpg
 
-we are using a brocker samed 
+we are using a brocker named 
 
-![not loaded](https://www.rabbitmq.com/img/rabbitmq-logo-with-name.svg)
+<div align="center">
+  <img src="https://www.rabbitmq.com/img/rabbitmq-logo-with-name.svg" alt="load failed" style="max-width: 227px; height: auto;">
+</div>
+
+
 
 ![not loaded](./imgs/first.png)
 
-done
+## done work :
 
-&#x2611; enter
-&#9745; ae
+- [x] java pub class
+- [x] java sub class
+- [x] java Watch
+- [x] java WatchMO
+- [x] java postgreConnetion (singleton)
+- [x] java mysqlConnection (singleton)
+- [x] using jdk 17 to compile classes
+- [x] brocker rabbitmq
+  - [x] inform the user
+- [ ] inform firefighter 🔥 
+  - [ ] postgres + pgAdmin failed
+  - [ ] mysql + phpmyadmin failed
+
+
 
 
 
