@@ -19,9 +19,7 @@ https://excalidraw.com/#room=2ceef69c678c276b7b80,xi3QUamN1P-3FMKsHWbhpg
 we are using a brocker named 
 
 <div align="center">
-
-  ![can't load](https://www.rabbitmq.com/img/rabbitmq-logo-with-name.svg)
-  
+  <img src="https://www.rabbitmq.com/img/rabbitmq-logo-with-name.svg" alt="load failed" style="max-width: 227px; height: auto;">
 </div>
 
 
