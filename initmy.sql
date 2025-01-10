@@ -8,6 +8,3 @@ CREATE TABLE IF NOT EXISTS Watch (
     Temp INT,
     wDate VARCHAR(21) NOT NULL
 );
-
-
-

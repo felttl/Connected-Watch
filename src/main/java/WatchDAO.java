@@ -7,14 +7,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
-
-
-
 
 public class WatchDAO {
 
@@ -48,7 +44,7 @@ public class WatchDAO {
     }
 
     private java.sql.Connection connection;
-    private static final String dbTable = "watch";
+    private static final String dbTable = "Watch";
 
     public WatchDAO(){
         // add connection JDBC

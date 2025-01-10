@@ -35,7 +35,6 @@ public class MysqlConnection {
         return MysqlConnection.instance.connection;
     }
 
-
     // Méthode pour fermer la connexion proprement
     public void closeConnection() {
         if (connection != null) {
