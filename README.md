@@ -28,21 +28,19 @@ we are using a brocker named
 
 ## done work :
 
-  -    [x] java pub class
-  -    [x] java sub class
-  -    [x] java Watch
-  -    [x] java WatchMO
-  -    [x] java postgreConnetion (singleton)
-  -    [x] java mysqlConnection (singleton)
-  -    [x] using jdk 17 to compile classes
-  -    [x] brocker rabbitmq
-  -    [x] inform the user
-  -    [ ] inform firefighter 🔥
-  -    [ ] save to database
+- [x] java pub class
+- [x] java sub class
+- [x] java Watch
+- [x] java WatchMO
+- [x] java postgreConnetion (singleton)
+- [x] java mysqlConnection (singleton)
+- [x] using jdk 17 to compile classes
+- [x] brocker rabbitm
+  - [x] inform the user
+- [ ] inform firefighter 🔥 
+  - [ ] postgres + pgAdmin failed
+  - [ ] mysql + phpmyadmin failed
 
-    - postgres + pgAdmin   -    [ ] failed
-    - mysql + phpmyadmin   -    [ ] failed
-    
 
 
 
