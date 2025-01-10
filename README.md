@@ -26,10 +26,23 @@ we are using a brocker named
 
 ![not loaded](./imgs/first.png)
 
-done
+## done work :
 
-&#x2611; enter
-&#9745; ae
+  -    [x] java pub class
+  -    [x] java sub class
+  -    [x] java Watch
+  -    [x] java WatchMO
+  -    [x] java postgreConnetion (singleton)
+  -    [x] java mysqlConnection (singleton)
+  -    [x] using jdk 17 to compile classes
+  -    [x] brocker rabbitmq
+  -    [x] inform the user
+  -    [ ] inform firefighter 🔥
+  -    [ ] save to database
+    - postgres + pgAdmin   -    [ ] failed
+    - mysql + phpmyadmin   -    [ ] failed
+    
+
 
 
 
