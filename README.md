@@ -17,8 +17,11 @@ collaborative : <br>
 https://excalidraw.com/#room=2ceef69c678c276b7b80,xi3QUamN1P-3FMKsHWbhpg
 
 we are using a brocker samed 
+<div align="center">
+![can't load](https://www.rabbitmq.com/img/rabbitmq-logo-with-name.svg)
+</div>
 
-![not loaded](https://www.rabbitmq.com/img/rabbitmq-logo-with-name.svg)
+
 
 ![not loaded](./imgs/first.png)
 
