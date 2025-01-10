@@ -6,26 +6,45 @@ if [ ! "$(command -v docker)" ]; then
 fi
 
 CURRENT_DIR=$(basename $(pwd))
-
 NETWORK_NAME=mqtt-network
+REPO_NAME=montre_connecte
 
 if [ ! "$(docker network ls | grep "$NETWORK_NAME")" ]; then
   echo "Creating network ..."
   docker network create $NETWORK_NAME
 fi
 
+# postgre
 docker run -it --name postgres  \
     -e POSTGRES_USER=root \
     -e POSTGRES_PASSWORD=root \
-    -e POSTGRES_DB=MontreConnectee \
+    -e POSTGRES_DB=$REPO_NAME \
     -p 5432:5432 \
     -v $(pwd)/init.sql:/dockert-entrypoint-initdb.d/init.sql \
     --net $NETWORK_NAME \
     -d postgres
 
+#pgadmin
 docker run -it --name pgadmin \
     -e PGADMIN_DEFAULT_EMAIL=admin@gmail.com \
     -e PGADMIN_DEFAULT_PASSWORD=root \
     -p 8080:80 \
     --net $NETWORK_NAME \
     -d dpage/pgadmin4
+
+# mysql
+docker run -d --name mysql-container \
+    --net $NETWORK_NAME \
+    -e MYSQL_ROOT_PASSWORD=root \
+    -p 3306:3306 \
+    -v $(pwd)/initmy.sql:/docker-entrypoint-initdb.d/init.sql \
+    mysql:8.0.33
+
+
+# phpmysql
+docker run -d \
+    --name phpmyadmin-container \
+    --net $NETWORK_NAME \
+    -e PMA_HOST=mysql-container \
+    -e PMA_PORT=3306 \
+    -p 8083:80 phpmyadmin/phpmyadmin:5.2.1-fpm-alpine

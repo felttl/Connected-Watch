@@ -3,4 +3,5 @@
 /opt/maven/src/main/java/WatchDAO.java
 /opt/maven/src/main/java/Monitor.java
 /opt/maven/src/main/java/PostgreConnection.java
+/opt/maven/src/main/java/MysqlConnection.java
 /opt/maven/src/main/java/Consumer.java

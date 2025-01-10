@@ -1,6 +1,7 @@
-main/java/Watch.class
 Producer.class
+main/java/MysqlConnection.class
 Consumer.class
 main/java/PostgreConnection.class
 main/java/WatchDAO.class
 Monitor.class
+main/java/Watch.class

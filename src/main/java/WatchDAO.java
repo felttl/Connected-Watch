@@ -21,7 +21,6 @@ public class WatchDAO {
     private static final String EXCHANGE_NAME = "logs";
     private static final String BROKER_HOST = System.getenv("broker_host");
 
-
     /**
      * récupère les données et les transmet
      * fait aussi l'ajout dan la bd
@@ -53,39 +52,45 @@ public class WatchDAO {
 
     public WatchDAO(){
         // add connection JDBC
-        this.connection = PostgreConnection.getConnection();
+        this.connection = MysqlConnection.getConnection();
     }
 
     public int add(Watch watch) {
         // préparation
         int r=0;
-        try{
-            String sql = "INSERT INTO " + WatchDAO.dbTable + " (id, hr, temp, wdate) VALUES (?, ?, ?, ?)";
-            this.connection = PostgreConnection.getConnection();
-            PreparedStatement pstmt = connection.prepareStatement(
-                sql, Statement.RETURN_GENERATED_KEYS
-            );
-            pstmt.setString(1, watch.getId());        
-            pstmt.setDouble(2, watch.getHeartRate());  
-            pstmt.setDouble(3, watch.getTemp());    
-            pstmt.setString(4, watch.getDate());
-            int insertedRows = pstmt.executeUpdate();
-            // Vérifier si une ligne a été insérée et récupérer l'ID généré
-            if (insertedRows > 0) {
-                try (ResultSet rs = pstmt.getGeneratedKeys()) {
-                    if (rs.next()) {
-                        return rs.getInt(1);
+        // on essaie avec mysql si erreur
+        if(r==-1){
+            String sql = "INSERT INTO " + dbTable + " (id, HR, Temp, wDate) VALUES (?, ?, ?, ?)";
+            try (PreparedStatement pstmt = this.connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+                // Remplir les paramètres de la requête
+                pstmt.setString(1, watch.getId());
+                pstmt.setDouble(2, watch.getHeartRate());
+                pstmt.setDouble(3, watch.getTemp());
+                pstmt.setString(4, watch.getDate());
+                int insertedRows = pstmt.executeUpdate();
+                if (insertedRows > 0) {
+                    try (ResultSet rs = pstmt.getGeneratedKeys()) {
+                        if (rs.next()) {
+                            return rs.getInt(1);
+                        }
                     }
                 }
+                r=0;
+            } catch (SQLException e) {
+                r=-1;
+                System.err.println("Erreur lors de l'insertion des données avec MYSQL : " + e.getMessage());
             }
-            return -1;            
-        } catch (SQLException e) {
-            e.printStackTrace(); // Afficher les erreurs SQL
-            r = -1;
         }
         return r;
     }
 }
+
+
+
+
+    
+
+
 
 
 

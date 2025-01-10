@@ -3,6 +3,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import org.postgresql.util.PSQLException;
+
 /**
  * Connexion avec Singleton à une base de données PostgreSQL
  */
@@ -13,14 +15,16 @@ public class PostgreConnection {
 
     // Constructeur privé pour empêcher l'instanciation multiple
     private PostgreConnection() {
-        String url = "jdbc:postgresql://postgres:5432/MontreConnectee";
+        String url = "jdbc:postgres://postgres:5432/MontreConnectee";
         String username = "root";
         String password = "root";        
         try {
             this.connection = DriverManager.getConnection(url, username, password);
             System.out.println("Connexion réussie à la base de données !");
-        } catch (SQLException e) {
+        } catch (PSQLException e) {
             System.err.println("Erreur de connexion : " + e.getMessage());
+        } catch (SQLException e){
+            System.err.println("Erreur de connexion : " + e.getMessage());            
         }
     }
 

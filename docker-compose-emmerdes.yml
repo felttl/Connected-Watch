@@ -1,7 +1,5 @@
-version '0.0'
-
+version: "0.0"
 services:
-
   app:
     # add Java JDK
     image: openjdk:23-jdk-slim
@@ -26,21 +24,5 @@ services:
         - ./db/rabbitmq/data/:/var/lib/rabbitmq/
         - ./db/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
     networks:
-        - rabbitmq_go_net
-    db:
-        image: mysql:8.0
-        environment:
-        
-    networks:
-      rabbitmq_go_net:
-        driver: bridge
-    
-    environment:
-        MYSQL_ROOT_PASSWORD: root
+      - rabbit_go_net
 
-        
-    volumes:
-        - db-data:/var/lib/mysql
-        - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
-    networks:
-      rabbitmq_go_net

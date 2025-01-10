@@ -20,7 +20,7 @@ public class Watch {
         int tmp = (int) (Math.random() * 40);
         this.heartRate = hR;        
         this.temp = tmp;
-        this.wdate = this.getFormatDate(new Date());
+        this.wdate = "\""+this.getFormatDate(new Date())+"\"";
     }
 
     private String getFormatDate(Date date){
@@ -59,7 +59,7 @@ public class Watch {
     public String toString() {
         return "Watch{" +
                 "id='" + id + '\'' +
-                ", fc=" + heartRate +
+                ", HR=" + heartRate +
                 ", temp=" + temp +
                 ", date=" + this.wdate +
                 '}';
