@@ -39,6 +39,7 @@ we are using a brocker named
   -    [x] inform the user
   -    [ ] inform firefighter 🔥
   -    [ ] save to database
+
     - postgres + pgAdmin   -    [ ] failed
     - mysql + phpmyadmin   -    [ ] failed
     
