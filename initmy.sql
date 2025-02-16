@@ -8,3 +8,6 @@ CREATE TABLE IF NOT EXISTS Watch (
     Temp INT,
     wDate VARCHAR(21) NOT NULL
 );
+
+plus léger que les machines virtuelles
+premet de faire des imgs
